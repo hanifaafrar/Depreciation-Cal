@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: #ffffcc; /* Yellow background color for the whole page */
+      font-family: Arial, sans-serif;
+      text-align: center; /* Center align the content */
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #553d11;
+    }
+
+    .clock {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .example {
+      text-align: left;
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f3f3a5;
+      border: 1px solid #5555d2;
+    }
+
+    p {
+      color: #0e0606;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Asset Depreciation Calculator</h1>
+  
+  <div class="clock">
+    <p>Current Date and Time:</p>
+    <p id="datetime"></p>
+  </div>
+  
+  <div class="example">
+    <h2>Example Calculation - 01</h2>
+    <p>I have taken the Depreciation Calculation Date as 01st – Nov -2023</p>
+
+    <p>If the asset was purchased on 10th Feb 2022, what is the depreciated value of the asset now?</p>
+    <p>The purchase value of the asset = 9800 (irrespective of the currency)</p>
+
+    <p>First, calculate the "Used Life" in days:</p>
+    <p>Used Life = Depreciation Calculation Date - Purchase Date/invoice date</p>
+    <p>Used Life = 01st Nov 2023 - 10th Feb 2022</p>
+    <p>Used Life = 629 days</p>
+
+    <p>Now, calculate the "Remaining Life" in days:</p>
+    <p>Remaining Life = (3 years * 365 days) - Used Life</p>
+    <p>Remaining Life = (3 * 365) - 629</p>
+    <p>Remaining Life = 1,096 - 629</p>
+    <p>Remaining Life = 467 days</p>
+
+    <p>Next, calculate the "Per Day Depreciation Charge":</p>
+    <p>Per Day Depreciation Charge = Purchase Value / Life</p>
+    <p>Per Day Depreciation Charge = 9800 / 1096</p>
+    <p>Per Day Depreciation Charge = 8.94</p>
+
+    <p>Now, calculate the "Depreciation Charge" for the used period:</p>
+    <p>Depreciation Charge = Used Life * Per Day Depreciation Charge</p>
+    <p>Depreciation Charge = 629 * 8.94</p>
+    <p>Depreciation Charge = 5614.26</p>
+
+    <p>Finally, calculate the "Book Value" of the asset:</p>
+    <p>Book Value = Purchase Value - Depreciation Charge</p>
+    <p>Book Value = 9800 - 5614.26</p>
+    <p>Book Value = 4185.74</p>
+
+    <p>So, if the asset was purchased on 10th Feb 2022 and the depreciation calculation date is 01st Nov 2023, the depreciated value of the asset would be approximately 4185.74. ( However, HR can change this value)</p>
+  </div>
+
+  <div class="example">
+    <h2>Example Calculation - 02</h2>
+    <p>If the asset was purchased on 03rd Jan 2023, what is the depreciated value of the asset now?</p>
+    <p>The purchase value of the asset = 6300 (irrespective of the currency)</p>
+
+    <p>Calculate the "Used Life" in days:</p>
+    <p>Used Life = Depreciation Calculation Date - Purchase Date</p>
+    <p>Used Life = 01st Nov 2023 - 03rd Jan 2023</p>
+    <p>Used Life = 303 days</p>
+
+    <p>Calculate the "Remaining Life" in days:</p>
+    <p>Remaining Life = (3 years * 365 days/year) - Used Life</p>
+    <p>Remaining Life = (3 * 365) - 303</p>
+    <p>Remaining Life = 1,095 - 303</p>
+    <p>Remaining Life = 792 days</p>
+
+    <p>Calculate the "Per Day Depreciation Charge":</p>
+    <p>Per Day Depreciation Charge = Purchase Value / Life</p>
+    <p>Per Day Depreciation Charge = 6300 / 1095</p>
+    <p>Per Day Depreciation Charge ≈ 5.75</p>
+
+    <p>Calculate the "Depreciation Charge" for the used period:</p>
+    <p>Depreciation Charge = Used Life * Per Day Depreciation Charge</p>
