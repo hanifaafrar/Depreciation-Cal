@@ -70,7 +70,7 @@
   <a href="example.html" target="_blank">
     <button>Go to User Examples</button>
   </a>
-  <p><b><span style=" colour: red;">ATTENTION: This calculator should only be used for an asset with a life within 3 years from the purchase / invoice date.</span></b></p>
+  <p><b><span style=" colour: red;">ATTENTION: This calculator should only be used for an asset with a life within 3 years from the purchase/invoice date.</span></b></p>
   <hr border="2" />
    
   <label for="depreciationCalculationDate">Depreciation Calculation Date:</label>
@@ -116,7 +116,30 @@
       </tr>
     </table>
   </div>
+  
+      <script>
+        $('#calculate').click(function() {
+          var depreciationCalculationDate = new Date($('#depreciationCalculationDate').val());
+          var invoiceDate = new Date($('#invoiceDate').val());
+          var purchasedValue = parseFloat($('#purchasedValue').val());
+          var life = parseFloat($('#life').val());
+          var lifeInDays = life * 365;
+          var usedLife = Math.ceil((depreciationCalculationDate - invoiceDate) / (1000 * 3600 * 24));
+          var remainingLife = lifeInDays - usedLife;
+          var perDayDepreciationCharge = purchasedValue / lifeInDays;
+          var depreciationCharge = usedLife * perDayDepreciationCharge;
+          var bookValue = purchasedValue - depreciationCharge;
+          $('#usedLife').text(usedLife + " days");
+          $('#remainingLife').text(remainingLife + " days");
+          $('#perDayDepreciationCharge').text("$" + perDayDepreciationCharge.toFixed(2));
+          $('#depreciationCharge').text("$" + depreciationCharge.toFixed(2));
+          $('#bookValue').text("$" + bookValue.toFixed(2));
+        });
+      </script>
 
+   <a href="example.html" target="_blank">
+    <button>Go to User Examples</button>
+  </a>
 
   <hr border="5" />
   <h2 align="center">Reference:</h2>
@@ -155,28 +178,6 @@
         <p>Book Value is determined by subtracting the "Depreciation Charge" (the total depreciation accrued by the asset) from the "Purchased Value" (the initial cost of the asset). This calculation provides the current estimated value of the asset based on its depreciation.</p>
       </li>
     </ol>
-
-
-
-      <script>
-        $('#calculate').click(function() {
-          var depreciationCalculationDate = new Date($('#depreciationCalculationDate').val());
-          var invoiceDate = new Date($('#invoiceDate').val());
-          var purchasedValue = parseFloat($('#purchasedValue').val());
-          var life = parseFloat($('#life').val());
-          var lifeInDays = life * 365;
-          var usedLife = Math.ceil((depreciationCalculationDate - invoiceDate) / (1000 * 3600 * 24));
-          var remainingLife = lifeInDays - usedLife;
-          var perDayDepreciationCharge = purchasedValue / lifeInDays;
-          var depreciationCharge = usedLife * perDayDepreciationCharge;
-          var bookValue = purchasedValue - depreciationCharge;
-          $('#usedLife').text(usedLife + " days");
-          $('#remainingLife').text(remainingLife + " days");
-          $('#perDayDepreciationCharge').text("$" + perDayDepreciationCharge.toFixed(2));
-          $('#depreciationCharge').text("$" + depreciationCharge.toFixed(2));
-          $('#bookValue').text("$" + bookValue.toFixed(2));
-        });
-      </script>
 </body>
 
 </html>
