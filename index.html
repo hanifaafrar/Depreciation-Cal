@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <style>
+    body {
+    background-image: url('https://www.formassembly.com/wp-content/uploads/2023/01/Calculation-and-Repeatable-Sections_blog-header.jpg');
+    background-size: cover; /* Adjust the image size to cover the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Fixed background to prevent scrolling */
+    background-color: #ffffcc; /* Fallback background color if the image is unavailable */
+    }
+
+    
+    label {
+      color: #553d11; /* Yellow text color for labels */
+    }
+    
+    input[type="date"],
+    input[type="number"],
+    button {
+      background-color: #ffcc00; /* Yellow background color for input elements and button */
+      color: #0e0606; /* White text color for input elements and button */
+      border: none; /* Remove borders */
+      padding: 5px; /* Add padding for spacing */
+      margin: 5px; /* Add margin for spacing */
+    }
+    
+    button:hover {
+      background-color: #241ed8; /* Darker yellow on hover for the button */
+    }
+    #results p {
+      color: blue;
+      font-weight: bold;
+    }
+        #results table {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #f3f3a5; /* Yellow background color */
+    text-align: center; /* Center align the table content */
+    }
+
+    #results table th, #results table td {
+    padding: 10px; /* Add padding to the table cells for spacing */
+    border: 1px solid #5555d2; /* Add borders to table cells */
+    }
+
+    #results table th {
+    background-color: #ffcc00; /* Yellow header background color */
+    color: #090303; /* White header text color */
+    }
+
+      
+    #results table th, #results table td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    #results table th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body align="center">
+  <h1 align="center">Asset Depreciation Calculator</h1>
+  <br />
+  <a href="file:///Users/darkman/Desktop/HTML/User-ex.html" target="_blank">
+    <button>Go to User Examples</button>
+  </a>
+  <p><b><span style="color: red;">ATTENTION: This calculator should only be used for an asset with a life within 3 years from the purchase / invoice date.</span></b></p>
+  <hr border="2" />
+   
+  <label for="depreciationCalculationDate">Depreciation Calculation Date:</label>
+  <input type="date" id="depreciationCalculationDate"><br><br>
+  
+  <label for="invoiceDate">Invoice Date:</label>
+  <input type="date" id="invoiceDate"><br><br>
+
+  <label for="life">Life (In years):</label>
+  <input min="1" type="number" id="life"><br><br>
+
+  <label for="purchasedValue">Purchased Value:</label>
+  <input min="0" type="number" id="purchasedValue"><br><br>
+
+  <button id="calculate">Calculate</button><br><br>
+
+  <div id="results">
+    <h2>Results:</h2>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Used Life:</td>
+        <td><span id="usedLife"></span></td>
+      </tr>
+      <tr>
+        <td>Remaining Life:</td>
+        <td><span id="remainingLife"></span></td>
+      </tr>
+      <tr>
+        <td>Per Day Depreciation Charge:</td>
+        <td><span id="perDayDepreciationCharge"></span></td>
+      </tr>
+      <tr>
+        <td>Depreciation Charge:</td>
+        <td><span id="depreciationCharge"></span></td>
+      </tr>
+      <tr>
+        <td>Book Value:</td>
+        <td><span id="bookValue"></span></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <hr border="5" />
+  <h2 align="center">Reference:</h2>
+
+  <ol>
+      <li><b>GRN/Invoice Date:</b> The date when the invoice for an item was purchased.</li>
+      <hr />
+      <li><b>Depreciation Calculation Date:</b> The date for calculating depreciation, set on the 1st of each month, such as the 1st of March, the 1st of April, and the same.</li>
+      <hr />
+      <li><b>Life:</b> The usual asset lifespan, often 3 years <b><i>(1,095 days)</i></b>.</li>
+      <hr />
+      <li><b>Remaining Life:</b> The days left in the asset utilized by the user, are calculated as the difference between its total life and the days in use.
+        <p style="color: rgb(230, 51, 51);"><b>Remaining Life</b>= (Life * 365) – Used Life</p>
+        <p>Remaining Life is calculated by subtracting the "Depreciation Calculation Date" from "Life" (usually 3 years or 1,095 days), and then multiplying the result by 365. This gives you the remaining days in the asset's life</p>
+      </li>
+      <hr />
+      <li><b>Per Day Depreciation Charge:</b> The daily depreciation cost of the asset, used for depreciation calculations.
+        <p style="color: rgb(230, 51, 51);"><b>Per Day Depreciation Charge</b>= Purchased Value / 1095 (3 years)</p>
+        <p>Per Day Depreciation Charge is calculated by dividing the "Purchased Value" (the initial cost of the asset) by 1,095, which represents the total number of days in a typical 3-year asset life. This calculation gives the daily depreciation charge, indicating how much the asset loses in value each day over its expected lifespan.</p>
+      </li>
+      <hr />
+      <li><b>Used Life:</b> The number of days the asset has been in active use.
+        <p style="color: rgb(230, 51, 51)"><b>Used Life</b>= Depreciation Calculation Date - GRN/Invoice Date</p>
+        <p>This equation calculates the "Used Life" of an asset by finding the difference in days between the "Depreciation Calculation Date" and the "GRN/Invoice Date," which gives the number of days the asset has been in use or actively utilized.</p>
+      </li>
+      <hr />
+      <li><b>Purchased Value:</b> The initial purchase cost or value of the asset.</li>
+      <hr />
+      <li><b>Depreciation Charge:</b> The total depreciation accrued during the asset's usage.
+        <p style="color: rgb(230, 51, 51)"><b>Depreciation Charge</b>= Used Life * Per Day Depreciation Charge</p>
+        <p>Depreciation Charge is calculated by multiplying the "Used Life" (the number of days the asset has been in use) by the "Per Day Depreciation Charge" (the daily depreciation cost).</p>
+      </ul>
+      <hr />
+      <li><b>Book Value:</b> The current estimated asset value is calculated based on the remaining days and the per-day depreciation charge. It reflects the asset's value at a specific time.
+        <p style="color: rgb(230, 51, 51);"><b>Book Value</b>= Purchased Value - Depreciation Charge</p>
+        <p>Book Value is determined by subtracting the "Depreciation Charge" (the total depreciation accrued by the asset) from the "Purchased Value" (the initial cost of the asset). This calculation provides the current estimated value of the asset based on its depreciation.</p>
+      </li>
+    </ol>
+
+
+
+      <script>
+        $('#calculate').click(function() {
+          var depreciationCalculationDate = new Date($('#depreciationCalculationDate').val());
+          var invoiceDate = new Date($('#invoiceDate').val());
+          var purchasedValue = parseFloat($('#purchasedValue').val());
+          var life = parseFloat($('#life').val());
+          var lifeInDays = life * 365;
+          var usedLife = Math.ceil((depreciationCalculationDate - invoiceDate) / (1000 * 3600 * 24));
+          var remainingLife = lifeInDays - usedLife;
+          var perDayDepreciationCharge = purchasedValue / lifeInDays;
+          var depreciationCharge = usedLife * perDayDepreciationCharge;
+          var bookValue = purchasedValue - depreciationCharge;
+          $('#usedLife').text(usedLife + " days");
+          $('#remainingLife').text(remainingLife + " days");
+          $('#perDayDepreciationCharge').text("$" + perDayDepreciationCharge.toFixed(2));
+          $('#depreciationCharge').text("$" + depreciationCharge.toFixed(2));
+          $('#bookValue').text("$" + bookValue.toFixed(2));
+        });
+      </script>
+</body>
+
+</html>
