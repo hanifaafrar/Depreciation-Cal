@@ -116,25 +116,32 @@
   </div>
   
       <script>
-        $('#calculate').click(function() {
-          var depreciationCalculationDate = new Date($('#depreciationCalculationDate').val());
-          var invoiceDate = new Date($('#invoiceDate').val());
-          var purchasedValue = parseFloat($('#purchasedValue').val());
-          var life = parseFloat($('#life').val());
-          var lifeInDays = life * 365;
-          var usedLife = Math.ceil((depreciationCalculationDate - invoiceDate) / (1000 * 3600 * 24));
-          var remainingLife = lifeInDays - usedLife;
-          var perDayDepreciationCharge = purchasedValue / lifeInDays;
-          var depreciationCharge = usedLife * perDayDepreciationCharge;
-          var bookValue = purchasedValue - depreciationCharge;
-          $('#usedLife').text(usedLife + " days");
-          $('#remainingLife').text(remainingLife + " days");
-          $('#perDayDepreciationCharge').text(perDayDepreciationCharge.toFixed(2));
-          $('#depreciationCharge').text(depreciationCharge.toFixed(2));
-          $('#bookValue').text(bookValue.toFixed(2));
-        });
-      </script>
-
+  $('#calculate').click(function() {
+    var depreciationCalculationDate = new Date($('#depreciationCalculationDate').val());
+    var invoiceDate = new Date($('#invoiceDate').val());
+    var purchasedValue = parseFloat($('#purchasedValue').val());
+    var life = parseFloat($('#life').val());
+    var lifeInDays = life * 365;
+    var usedLife = Math.ceil((depreciationCalculationDate - invoiceDate) / (1000 * 3600 * 24));
+    var remainingLife = lifeInDays - usedLife;
+    var perDayDepreciationCharge = purchasedValue / lifeInDays;
+    var depreciationCharge = usedLife * perDayDepreciationCharge;
+    var bookValue = purchasedValue - depreciationCharge;
+    
+    $('#usedLife').text(usedLife + " days");
+    $('#perDayDepreciationCharge').text(perDayDepreciationCharge.toFixed(2));
+    
+    if (remainingLife <= 0) {
+      $('#remainingLife').text("This asset doesn't have a depreciation value");
+      $('#depreciationCharge').text("This asset doesn't have a depreciation value");
+      $('#bookValue').text("This asset doesn't have a depreciation value");
+    } else {
+      $('#remainingLife').text(remainingLife + " days");
+      $('#depreciationCharge').text(depreciationCharge.toFixed(2));
+      $('#bookValue').text(bookValue.toFixed(2));
+    }
+  });
+</script>
    <a href="example.html" target="_blank">
     <button>Go to User Examples</button>
   </a>
